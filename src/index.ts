@@ -12,7 +12,7 @@ app.get('/other', (_, res) => {
 });
 
 app.get('/ci', (_, res) => {
-  res.send(`Checking if cloud build works`);
+  res.send(`Checking if cloud build works. trying new trigger sad pepe`);
 });
 
 const server = app.listen(8080, () => {
