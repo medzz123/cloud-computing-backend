@@ -11,6 +11,10 @@ app.get('/other', (_, res) => {
   res.send(`I am in a different route! `);
 });
 
+app.get('/ci', (_, res) => {
+  res.send(`Checking if cloud build works`);
+});
+
 const server = app.listen(8080, () => {
   const addr = server.address();
   const binding =
