@@ -3,9 +3,7 @@ import admin from 'firebase-admin';
 const NODE_ENV = process.env.NODE_ENV;
 
 if (NODE_ENV === 'production') {
-  admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
-  });
+  admin.initializeApp();
 } else {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const firebaseAccountCredentials = require('../../credentials.json');
