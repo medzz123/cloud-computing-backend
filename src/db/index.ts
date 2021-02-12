@@ -1,16 +1,15 @@
 import admin from 'firebase-admin';
 
-import firebaseAccountCredentials from '../../credentials.json';
-
 const NODE_ENV = process.env.NODE_ENV;
-
-const serviceAccount = firebaseAccountCredentials as admin.ServiceAccount;
 
 if (NODE_ENV === 'production') {
   admin.initializeApp({
     credential: admin.credential.applicationDefault(),
   });
 } else {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const firebaseAccountCredentials = require('../../credentials.json');
+  const serviceAccount = firebaseAccountCredentials as admin.ServiceAccount;
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
   });
