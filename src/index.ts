@@ -1,19 +1,18 @@
 import express from 'express';
+
+import { authMiddleware } from './middleware/token';
+import { addEmails, createEvent, getEvent } from './routes/event';
+import { getUser } from './routes/user';
+
 const app = express();
 
-app.get('/', (req, res) => {
-  const params = req.params;
+app.use(authMiddleware);
+app.use(express.json());
 
-  res.send(`Hello World! ${JSON.stringify(params)}`);
-});
-
-app.get('/other', (_, res) => {
-  res.send(`I am in a different route! `);
-});
-
-app.get('/ci', (_, res) => {
-  res.send(`Checking if cloud build works. trying new trigger sad pepe`);
-});
+app.get('/user', getUser);
+app.get('/event/:eventId', getEvent);
+app.post('/event', createEvent);
+app.post('/event/add', addEmails);
 
 const server = app.listen(8080, () => {
   const addr = server.address();
