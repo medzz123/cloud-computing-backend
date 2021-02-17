@@ -2,15 +2,11 @@ import { Request, Response } from 'express';
 
 import { db } from '../db';
 
-const getUser = async (req: Request, res: Response) => {
-  const { userId } = req.params;
+const USER_ID = 'FTdPkCzvCONxHShgR9Dl';
 
-  if (!userId) {
-    res.status(400).send('User id is required!');
-  }
-
+const getUser = async (_: Request, res: Response) => {
   try {
-    const ref = db.collection('users').doc(userId);
+    const ref = db.collection('users').doc(USER_ID);
 
     const userSnapshot = await ref.get();
 
